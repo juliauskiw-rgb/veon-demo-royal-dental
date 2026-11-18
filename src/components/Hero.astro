@@ -1,10 +1,11 @@
 ---
 import CallButton from "./CallButton.astro";
 import { img, nb } from "../data/site";
+const B = import.meta.env.BASE_URL;
 const H1 = "Естетична стоматологія у Львові: спершу фотопротокол і цифровий план, потім лікування";
 const wide = img["hero-models"];
 const sq = img["hero-models-sq"];
-const srcset = (files: typeof wide) => files.map((f) => `/images/${f.file} ${f.width}w`).join(", ");
+const srcset = (files: typeof wide) => files.map((f) => `${B}images/${f.file} ${f.width}w`).join(", ");
 const wideLast = wide[wide.length - 1];
 const sqLast = sq[sq.length - 1];
 ---
@@ -24,7 +25,7 @@ const sqLast = sq[sq.length - 1];
       <picture>
         <source media="(max-width: 47.99rem)" srcset={srcset(sq)} sizes="100vw" width={sqLast.width} height={sqLast.height} />
         <img
-          src={`/images/${wide[1].file}`}
+          src={`${B}images/${wide[1].file}`}
           srcset={srcset(wide)}
           sizes="100vw"
           width={wideLast.width}

@@ -3,13 +3,14 @@ import Icon from "./Icon.astro";
 import CallButton from "./CallButton.astro";
 import FutureLink from "./FutureLink.astro";
 import { nav, contacts, socials } from "../data/site";
+const B = import.meta.env.BASE_URL;
 ---
 <header class="site-header on-dark" data-rec="R-003">
   <div class="container bar">
     <a class="logo" href="#top">
       <picture>
-        <source srcset="/images/logo-royal-dental.webp" type="image/webp" />
-        <img src="/images/logo-royal-dental.png" width="279" height="70" alt="Royal Dental Digital Clinic, на початок сторінки" />
+        <source srcset={B + "images/logo-royal-dental.webp"} type="image/webp" />
+        <img src={B + "images/logo-royal-dental.png"} width="279" height="70" alt="Royal Dental Digital Clinic, на початок сторінки" />
       </picture>
     </a>
     <nav class="nav" aria-label="Розділи сторінки">

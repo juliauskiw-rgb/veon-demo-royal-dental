@@ -1,17 +1,18 @@
 ---
 // Responsive WebP from public/images (built by scripts/build-images.mjs), with width/height to keep CLS at 0.
 import { img } from "../data/site";
+const B = import.meta.env.BASE_URL;
 interface Props { set: string; alt: string; sizes: string; class?: string; priority?: boolean; }
 const { set, alt, sizes, class: cls, priority = false } = Astro.props;
 const files = img[set];
 if (!files) throw new Error(`image set not found: ${set}`);
 const largest = files[files.length - 1];
 const fallback = files.find((f) => f.width >= 900) ?? largest;
-const srcset = files.map((f) => `/images/${f.file} ${f.width}w`).join(", ");
+const srcset = files.map((f) => `${B}images/${f.file} ${f.width}w`).join(", ");
 ---
 <img
   class={cls}
-  src={`/images/${fallback.file}`}
+  src={`${B}images/${fallback.file}`}
   srcset={srcset}
   sizes={sizes}
   width={largest.width}

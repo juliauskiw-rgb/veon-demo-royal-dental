@@ -1,14 +1,15 @@
 ---
 import FutureLink from "./FutureLink.astro";
 import { nav, contacts, socials, futureFooter } from "../data/site";
+const B = import.meta.env.BASE_URL;
 ---
 <footer class="site-footer">
   <div class="container grid">
     <div class="brand">
       <a class="plate" href="#top">
         <picture>
-          <source srcset="/images/logo-royal-dental.webp" type="image/webp" />
-          <img src="/images/logo-royal-dental.png" width="279" height="70" alt="Royal Dental Digital Clinic, на початок сторінки" />
+          <source srcset={B + "images/logo-royal-dental.webp"} type="image/webp" />
+          <img src={B + "images/logo-royal-dental.png"} width="279" height="70" alt="Royal Dental Digital Clinic, на початок сторінки" />
         </picture>
       </a>
       <p class="addr">{contacts.city}, {contacts.street}</p>
