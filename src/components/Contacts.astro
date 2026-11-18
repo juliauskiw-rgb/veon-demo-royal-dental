@@ -1,0 +1,67 @@
+---
+import Icon from "./Icon.astro";
+import CallButton from "./CallButton.astro";
+import { contacts, socials } from "../data/site";
+---
+<section id="contacts" class="section contacts" data-rec="R-006">
+  <div class="container grid">
+    <div class="where">
+      <h2>Контакти</h2>
+      <p class="address"><span class="street">{contacts.street}</span><span class="city">{contacts.city}</span></p>
+      <a class="link route" href={contacts.mapHref} rel="noopener" target="_blank"><Icon name="pin" />Маршрут на карті</a>
+    </div>
+    <div class="reach">
+      <dl class="rows">
+        <div class="row">
+          <dt>Телефони</dt>
+          <dd>
+            <a class="big" href={contacts.phoneMain.href}>{contacts.phoneMain.label}</a>
+            <a class="big" href={contacts.phoneSecond.href}>{contacts.phoneSecond.label}</a>
+          </dd>
+        </div>
+        <div class="row">
+          <dt>E-mail</dt>
+          <dd><a class="mail" href={`mailto:${contacts.email}`}>{contacts.email}</a></dd>
+        </div>
+        <div class="row">
+          <dt>Instagram</dt>
+          <dd><a class="mail" href={socials.instagram.href} rel="noopener" target="_blank" data-rec="R-011,S-R002,MA-R002">{socials.instagram.handle}</a></dd>
+        </div>
+        <div class="row">
+          <dt>Графік роботи</dt>
+          <dd>Уточнюйте за телефоном</dd>
+        </div>
+      </dl>
+      <CallButton label="Записатися на консультацію" withNumber={false} />
+      <p class="license">{contacts.license}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacts { padding-block: var(--space-6) var(--space-7); }
+  .grid { display: grid; gap: var(--space-5); }
+  .where { display: grid; gap: var(--space-3); align-content: start; }
+  .address { display: grid; gap: var(--space-1); font-family: var(--font-display); font-weight: 500; }
+  .street { font-size: var(--text-xl); line-height: var(--lh-tight); letter-spacing: -0.015em; max-width: 12ch; overflow-wrap: break-word; }
+  .city { font-size: var(--text-m); color: var(--color-text-muted); }
+  .route :global(svg) { width: 20px; height: 20px; }
+  .reach { display: grid; gap: var(--space-4); align-content: start; }
+  .rows { margin: 0; border-top: 1px solid var(--color-text); }
+  .row { display: grid; gap: var(--space-1); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-line); }
+  dt { font-size: var(--text-xs); color: var(--color-text-muted); }
+  dd { margin: 0; display: grid; justify-items: start; }
+  .mail { white-space: nowrap; }
+  .big, .mail { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; text-decoration-color: var(--color-line); transition: text-decoration-color var(--dur-micro) var(--ease-out); overflow-wrap: anywhere; }
+  .big { font-family: var(--font-display); font-size: var(--text-m); font-weight: 500; }
+  .big:hover, .mail:hover { text-decoration-color: currentColor; }
+  .big:active, .mail:active { color: var(--color-accent); }
+  .license { font-size: var(--text-xs); color: var(--color-text-muted); }
+  @media (min-width: 64rem) {
+    .grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--space-5); }
+    .street { font-size: clamp(3.5rem, 1rem + 4.4vw, 5rem); }
+  }
+  @media (min-width: 80rem) {
+    .row { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: baseline; }
+  }
+</style>

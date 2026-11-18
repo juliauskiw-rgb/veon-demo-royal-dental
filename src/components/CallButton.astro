@@ -1,0 +1,15 @@
+---
+// The one primary action: a real call to the clinic's main number (company.contacts.phones[0]).
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+interface Props { label?: string; withNumber?: boolean; class?: string; rec?: string; }
+const { label = "Записатися", withNumber = true, class: cls, rec } = Astro.props;
+---
+<a class:list={["btn-call", cls, withNumber && "btn-call--num"]} href={contacts.phoneMain.href} data-rec={rec}>
+  <Icon name="phone" />
+  {withNumber ? (
+    <span><span class="btn-call__label">{label} — </span>{contacts.phoneMain.label}</span>
+  ) : (
+    <span>{label}</span>
+  )}
+</a>

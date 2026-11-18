@@ -1,0 +1,43 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Directions from "../components/Directions.astro";
+import Works from "../components/Works.astro";
+import Method from "../components/Method.astro";
+import Prices from "../components/Prices.astro";
+import Reviews from "../components/Reviews.astro";
+import Online from "../components/Online.astro";
+import Faq from "../components/Faq.astro";
+import Contacts from "../components/Contacts.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import { contacts, socials } from "../data/site";
+
+const title = "Royal Dental — естетична стоматологія у Львові, вул. Героїв Крут 11б";
+const description = "Цифрова клініка у Львові: вініри, коронки, імплантація, брекети. Консультація з фотопротоколом від 500 грн, онлайн-консультація безкоштовно. (096) 313 67 88";
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: "Royal Dental",
+  address: { "@type": "PostalAddress", streetAddress: "вул. Героїв Крут, 11б", addressLocality: "Львів", addressCountry: "UA" },
+  telephone: ["+380963136788", "+380632522113"],
+  email: contacts.email,
+  sameAs: [socials.instagram.href, socials.youtube.href],
+};
+---
+<Base lang="uk" title={title} description={description} jsonld={jsonld}>
+  <Header slot="header" />
+  <Hero />
+  <Directions />
+  <Works />
+  <Method />
+  <Prices />
+  <Reviews />
+  <Online />
+  <Faq />
+  <Contacts />
+  <Footer slot="footer" />
+  <CallBar slot="footer" />
+  <script src="../scripts/ui.ts"></script>
+</Base>

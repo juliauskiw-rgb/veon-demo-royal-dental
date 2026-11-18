@@ -1,0 +1,64 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { nav, contacts, socials, futureFooter } from "../data/site";
+---
+<footer class="site-footer">
+  <div class="container grid">
+    <div class="brand">
+      <a class="plate" href="#top">
+        <picture>
+          <source srcset="/images/logo-royal-dental.webp" type="image/webp" />
+          <img src="/images/logo-royal-dental.png" width="279" height="70" alt="Royal Dental Digital Clinic, на початок сторінки" />
+        </picture>
+      </a>
+      <p class="addr">{contacts.city}, {contacts.street}</p>
+      <ul class="reach">
+        <li><a href={contacts.phoneMain.href}>{contacts.phoneMain.label}</a></li>
+        <li><a href={contacts.phoneSecond.href}>{contacts.phoneSecond.label}</a></li>
+        <li><a href={`mailto:${contacts.email}`}>{contacts.email}</a></li>
+      </ul>
+    </div>
+    <nav class="col" aria-label="Розділи сторінки, нижнє меню">
+      <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+    </nav>
+    <div class="col">
+      <ul>{futureFooter.map((f) => <li><FutureLink>{f}</FutureLink></li>)}</ul>
+    </div>
+    <div class="col">
+      <ul>
+        <li><a href={socials.instagram.href} rel="noopener" target="_blank" data-rec="R-011,S-R002,MA-R002">{socials.instagram.label}</a></li>
+        <li><a href={socials.youtube.href} rel="noopener" target="_blank">{socials.youtube.label}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container legal">
+    <p>{contacts.license}</p>
+    <p>© Royal Dental</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--color-line); padding-block: var(--space-5) var(--space-4); font-size: var(--text-xs); }
+  .grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brand { grid-column: 1 / -1; display: grid; gap: var(--space-2); justify-items: start; }
+  .plate { display: inline-block; padding: var(--space-2) var(--space-3); background: var(--color-header); border-radius: var(--radius); }
+  .plate img { height: 30px; width: auto; }
+  .plate:focus-visible { outline-offset: 3px; }
+  .addr { color: var(--color-text-muted); }
+  .reach { list-style: none; display: grid; }
+  .reach a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; text-decoration-color: var(--color-line); white-space: nowrap; transition: text-decoration-color var(--dur-micro) var(--ease-out); }
+  .reach a:hover { text-decoration-color: currentColor; }
+  .reach a:active { color: var(--color-accent); }
+  .col ul { list-style: none; display: grid; }
+  .col a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; text-underline-offset: 0.3em; }
+  .col a:hover { text-decoration: underline; }
+  .col a:active { color: var(--color-accent); }
+  .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-1) var(--space-3); margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--color-line); color: var(--color-text-muted); }
+  @media (min-width: 48rem) {
+    .grid { grid-template-columns: minmax(0, 4fr) repeat(3, minmax(0, 2fr)); column-gap: var(--gap); }
+    .brand { grid-column: auto; }
+  }
+  @media (max-width: 47.99rem) {
+    .site-footer { padding-bottom: calc(var(--space-4) + 76px); }
+  }
+</style>

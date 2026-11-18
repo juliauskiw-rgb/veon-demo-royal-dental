@@ -1,0 +1,38 @@
+---
+import Icon from "./Icon.astro";
+import { contacts, nb } from "../data/site";
+---
+<section id="online" class="online" data-rec="R-005">
+  <div class="container band">
+    <div class="intro">
+      <h2>Онлайн-консультація&nbsp;— безкоштовно</h2>
+      <p>{nb("Ви в іншому місті чи за кордоном? Напишіть або зателефонуйте.")}</p>
+    </div>
+    <ul class="ways">
+      <li><a class="way" href={`mailto:${contacts.email}`}><Icon name="mail" /><span>{contacts.email}</span></a></li>
+      <li><a class="way" href={contacts.phoneMain.href}><Icon name="phone" /><span>{contacts.phoneMain.label}</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .online { padding-block: var(--space-5); background: var(--color-surface); border-block: 1px solid var(--color-line); }
+  .band { display: grid; gap: var(--space-4); align-items: center; }
+  .intro { display: grid; gap: var(--space-2); }
+  h2 { font-size: var(--text-l); max-width: 24ch; }
+  .intro p { color: var(--color-text-muted); max-width: 48ch; }
+  .ways { list-style: none; display: grid; gap: var(--space-1); }
+  .way {
+    display: inline-flex; align-items: center; gap: var(--space-2); min-height: 52px; max-width: 100%;
+    font-family: var(--font-display); font-size: clamp(1.25rem, 0.9rem + 1.4vw, 2rem); line-height: 1.15; font-weight: 500;
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; text-decoration-color: var(--color-line);
+    overflow-wrap: anywhere; transition: text-decoration-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+  }
+  .way span { min-width: 0; overflow-wrap: break-word; word-break: break-word; }
+  .way :global(svg) { width: 24px; height: 24px; flex: none; color: var(--color-accent); }
+  .way:hover { text-decoration-color: currentColor; }
+  .way:active { color: var(--color-accent); }
+  @media (min-width: 64rem) {
+    .band { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: var(--gap); }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import Icon from "./Icon.astro";
+import Picture from "./Picture.astro";
+import FutureLink from "./FutureLink.astro";
+import { works, socials, nb } from "../data/site";
+---
+<section id="works" class="section works" data-rec="R-008">
+  <div class="container head">
+    <div class="section-head">
+      <h2>Наші роботи</h2>
+      <p>{nb("Пацієнти клініки після лікування. Підписи взяті з протоколів робіт.")}</p>
+    </div>
+    <div class="controls" data-works-controls hidden>
+      <button type="button" class="ctrl" data-works-back aria-label="Попередні роботи"><Icon name="chev-left" /></button>
+      <button type="button" class="ctrl" data-works-next aria-label="Наступні роботи"><Icon name="chev-right" /></button>
+    </div>
+  </div>
+  <ul class="strip" data-works-strip aria-label="Роботи клініки" tabindex="0">
+    {works.map((w) => (
+      <li class="work">
+        <figure>
+          <Picture set={w.set} alt={`Портрет пацієнта клініки після лікування: ${w.title.toLowerCase()}`} sizes="(min-width: 64rem) 22rem, 72vw" class="work-photo" />
+          <figcaption>
+            <span class="work-title">{nb(w.title)}</span>
+            {w.note && <span class="work-note">{w.note}</span>}
+          </figcaption>
+        </figure>
+      </li>
+    ))}
+  </ul>
+  <div class="container foot">
+    <FutureLink>Усі роботи</FutureLink>
+    <a class="link" href={socials.instagram.href} rel="noopener" target="_blank" data-rec="R-011">Більше робіт в Instagram</a>
+  </div>
+</section>
+
+<style>
+  .works { padding-top: var(--space-5); padding-bottom: var(--space-section); }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-3); }
+  .head .section-head { margin-bottom: var(--space-4); }
+  .controls { display: none; gap: var(--space-1); margin-bottom: var(--space-4); }
+  :global(.js) .controls:not([hidden]) { display: flex; }
+  .ctrl {
+    display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0;
+    background: none; border: 1px solid var(--color-text); border-radius: var(--radius); cursor: pointer;
+    transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+  }
+  .ctrl:hover { background: var(--color-text); color: var(--color-bg); }
+  .ctrl:active { transform: translateY(1px); }
+  .ctrl:disabled { opacity: 0.4; cursor: not-allowed; background: none; color: var(--color-text); transform: none; }
+  .ctrl :global(svg) { width: 22px; height: 22px; }
+
+  .strip {
+    --edge: max(var(--space), calc((100% - var(--container)) / 2));
+    display: grid; grid-auto-flow: column; grid-auto-columns: clamp(15rem, 72vw, 22rem); gap: var(--gap);
+    list-style: none; overflow-x: auto; overscroll-behavior-x: contain;
+    padding: 0 var(--edge) var(--space-2); scroll-padding-inline: var(--edge);
+    scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: thin;
+  }
+  .strip:focus-visible { outline-offset: -3px; }
+  .work { scroll-snap-align: start; min-width: 0; }
+  .work :global(.work-photo) { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; background: var(--color-dark); border-radius: var(--radius); }
+  figcaption { display: grid; grid-template-rows: auto auto; align-content: start; gap: var(--space-0); padding-top: var(--space-2); min-height: 5.5rem; }
+  .work-title { font-family: var(--font-display); font-size: var(--text-m); line-height: 1.2; font-weight: 500; }
+  .work-note { font-size: var(--text-xs); color: var(--color-text-muted); }
+  .foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); padding-top: var(--space-3); }
+  @media (max-width: 47.99rem) {
+    .head { display: block; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .strip { scroll-behavior: auto; }
+    .ctrl:active { transform: none; }
+  }
+</style>

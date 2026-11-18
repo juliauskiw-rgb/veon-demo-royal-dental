@@ -1,0 +1,63 @@
+---
+import Picture from "./Picture.astro";
+import { steps, nb } from "../data/site";
+---
+<section id="method" class="section method on-dark">
+  <div class="container grid">
+    <div class="intro">
+      <h2>Перший візит і як ми лікуємо</h2>
+      <p class="lead">{nb("Спершу огляд, фотопротокол і план. Лікування починається, коли ви бачите результат і знаєте вартість.")}</p>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+          <h3>{s.title}</h3>
+          <p>{nb(s.text)}</p>
+          {i === 0 && <p class="step-price">від 500 грн</p>}
+        </li>
+      ))}
+    </ol>
+    <figure class="photo photo--a">
+      <Picture set="method-model" alt="Друкована модель зубного ряду на чорному тлі" sizes="(min-width: 64rem) 40vw, 100vw" />
+      <figcaption>Модель зубного ряду: етап виготовлення вінірів</figcaption>
+    </figure>
+    <figure class="photo photo--b">
+      <Picture set="method-tryin" alt="Керамічні вініри на зубах, вигляд зблизька" sizes="(min-width: 64rem) 30vw, 100vw" />
+      <figcaption>Керамічні вініри зблизька</figcaption>
+    </figure>
+    <div class="calm">
+      <h3>Якщо ви боїтеся стоматолога</h3>
+      <p>{nb("Ми регулярно зустрічаємо пацієнтів із дентофобією. Діємо спокійно та обережно і пояснюємо лікування до дрібниць.")}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .method { background: var(--color-dark); color: var(--color-on-dark); padding-block: var(--space-6); }
+  .grid { display: grid; gap: var(--space-5); }
+  .intro { display: grid; gap: var(--space-3); }
+  .lead { color: var(--color-silver); max-width: 44ch; font-size: var(--text-m); line-height: 1.4; }
+  .steps { list-style: none; display: grid; gap: var(--space-4); counter-reset: none; }
+  .step { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-3); row-gap: var(--space-1); padding-top: var(--space-3); border-top: 1px solid var(--color-text-muted); }
+  .num { grid-row: 1 / span 3; font-family: var(--font-display); font-size: var(--text-l); line-height: 1; color: var(--color-silver); font-variant-numeric: lining-nums; min-width: 2ch; }
+  .step h3 { font-family: var(--font-body); font-size: var(--text-m); }
+  .step p { color: var(--color-silver); max-width: 40ch; }
+  .step .step-price { color: var(--color-on-dark); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .photo { display: grid; gap: var(--space-2); }
+  .photo :global(img) { width: 100%; height: auto; border-radius: var(--radius); }
+  .photo figcaption { font-size: var(--text-xs); color: var(--color-silver); }
+  .calm { display: grid; gap: var(--space-2); padding: var(--space-4) 0 0; border-top: 1px solid var(--color-text-muted); }
+  .calm h3 { font-family: var(--font-display); font-size: var(--text-l); font-weight: 500; line-height: var(--lh-head); }
+  .calm p { color: var(--color-silver); max-width: 52ch; }
+
+  @media (min-width: 64rem) {
+    .method { padding-block: var(--space-7) var(--space-6); }
+    .grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--space-6); }
+    .intro { grid-column: 1 / span 6; }
+    .photo--a { grid-column: 8 / span 5; grid-row: 1 / span 2; align-self: start; position: sticky; top: calc(var(--header-h) + var(--space-4)); }
+    .steps { grid-column: 1 / span 7; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-5); row-gap: var(--space-5); }
+    .photo--b { grid-column: 1 / span 6; }
+    .calm { grid-column: 8 / span 5; align-self: center; }
+  }
+</style>

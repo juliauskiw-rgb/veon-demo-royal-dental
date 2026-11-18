@@ -1,0 +1,72 @@
+/* Hallmark · shape: protocol record, typographic head over a black band of the clinic's own models · genre: editorial · theme: custom · job: book · idea: "Спершу точний запис, потім лікування: головна як цифровий протокол клініки" · vibe: "срібло, графіт, точність, тихий багрянець"
+ * paper: #EDEFF0 · accent: #9B1B2A · display: Piazzolla · body: Onest · hero: H1 across the container, a full-bleed black band of printed models and veneers beneath, call action on the seam · nav: graphite bar, six anchors, phone as text, one call button · footer: light, logo on a graphite plate, anchors, future pages, socials, licence · imagery: client photos · signature: protocol captions under the clinic's own models and patients
+ * axes: light/roman-serif/chromatic-red · posture: restrained · surface: absolute · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, a clinic page can drift into a price list; the method block in the only dark zone carries the argument that the plan comes before treatment */
+/* Hallmark · waive 7b · --color-surface #FFFFFF is the price sheet and panels, text on it passes 40 and 41 · the approved concept lists white as the surface colour of the price list */
+/* Hallmark · waive 39b · button.dir-btn stands 73 to 88px because each one carries a direction name set in the display face · the five treatment directions are the list of the clinic, a 52px row would shrink them to labels */
+/* Hallmark · dismissed 59 · ten counted blocks are hero, the nine concept sections and the footer; design/concept.md fixes nine sections for the clinic */
+/* Hallmark · dismissed 42 · the footer is the one named in the stamp: logo plate with address, phones and e-mail, anchors, future pages, socials, licence line; the phones and e-mail were asked for by the UX review */
+/* Client design tokens: only from design/concept.md (veon-concept: colors, fonts). */
+:root {
+  /* colour */
+  --color-bg: #EDEFF0;
+  --color-surface: #FFFFFF; /* price sheet: approved concept colour */
+  --color-text: #1C1D1F;
+  --color-text-muted: #53575C;
+  --color-dark: #0F1011;
+  --color-silver: #B8BDC1;
+  --color-line: #C9CDD0;
+  --color-accent: #9B1B2A;
+  --color-accent-strong: #7E1421;
+  --color-on-accent: #FBFBFA;
+  --color-accent-ink: var(--color-on-accent);
+  --color-on-dark: var(--color-bg);
+  --color-header: var(--color-text);
+  --color-focus: var(--color-text);
+  --color-focus-on-dark: var(--color-on-accent);
+
+  /* type */
+  --font-display: "Piazzolla", "Piazzolla Fallback", Georgia, serif;
+  --font-body: "Onest", "Onest Fallback", system-ui, sans-serif;
+  --text-xs: 0.9375rem;   /* 15 captions */
+  --text-s: 1.125rem;     /* 18 body */
+  --text-m: 1.5rem;       /* 24 titles */
+  --text-l: 2.25rem;      /* 36 */
+  --text-xl: 3.5rem;      /* 56 */
+  --text-h1: clamp(2.25rem, 1.15rem + 3.6vw, 4.25rem);
+  --text-h2: clamp(2rem, 1.1rem + 2.6vw, 3.5rem);
+  --text-quote: clamp(1.5rem, 1rem + 1.6vw, 2.25rem);
+  --lh-tight: 1.05;
+  --lh-head: 1.12;
+  --lh-body: 1.55;
+
+  /* space: 8-point rhythm from the concept */
+  --space-0: 0.25rem;  /* 4 */
+  --space-1: 0.5rem;   /* 8 */
+  --space-2: 1rem;     /* 16 */
+  --space-3: 1.5rem;   /* 24 */
+  --space-4: 2.5rem;   /* 40 */
+  --space-5: 4rem;     /* 64 */
+  --space-6: 6.5rem;   /* 104 */
+  --space-7: 10rem;    /* 160 */
+  --space-section: clamp(4rem, 2rem + 5.6vw, 8rem);
+  --space: clamp(1.25rem, 5vw, 5rem); /* page gutter */
+  --container: 1320px;
+  --gap: 1.5rem;
+
+  /* shape and motion */
+  --radius: 2px;
+  --header-h: 64px;
+  --control-h: 52px;
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in: cubic-bezier(.5, 0, .75, 0);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-micro: 160ms;
+  --dur-short: 250ms;
+  --dur: 500ms;
+  --dur-long: 900ms;
+}
+
+@media (max-width: 47.99rem) {
+  :root { --header-h: 56px; --control-h: 52px; }
+}

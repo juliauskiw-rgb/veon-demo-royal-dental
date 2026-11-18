@@ -1,0 +1,95 @@
+---
+import Icon from "./Icon.astro";
+import Picture from "./Picture.astro";
+import FutureLink from "./FutureLink.astro";
+import { directions, nb } from "../data/site";
+---
+<section id="directions" class="section directions" data-rec="R-002">
+  <div class="container">
+    <div class="section-head head">
+      <h2>Напрями лікування</h2>
+      <p>{nb("П’ять напрямів клініки. Біля кожної послуги ціна за прайсом.")}</p>
+    </div>
+    <div class="dirs" data-dirs>
+      {directions.map((d, i) => (
+        <>
+          <h3 class="dir-title">
+            <button class="dir-btn" type="button" id={`dir-btn-${d.id}`} aria-expanded={i === 0 ? "true" : "false"} aria-controls={`dir-panel-${d.id}`} data-dir-btn>
+              <span class="dir-name">{d.title}</span>
+              <Icon name="plus" class="dir-icon" />
+            </button>
+          </h3>
+          <div class:list={["dir-panel", !d.photo && "dir-panel--type"]} id={`dir-panel-${d.id}`} role="region" aria-labelledby={`dir-btn-${d.id}`} data-dir-panel>
+            {d.photo ? (
+              <Picture set={d.photo.set} alt={d.photo.alt} sizes="(min-width: 64rem) 52vw, 100vw" class="dir-photo" />
+            ) : (
+              <p class="dir-statement" aria-hidden="true">{d.title}</p>
+            )}
+            <div class="dir-body">
+              <p class="dir-text">{nb(d.text)}</p>
+              <ul class="services">
+                {d.services.map((s) => (
+                  <li><span class="svc">{nb(s.name)}</span>{s.price && <span class="price">{s.price}</span>}</li>
+                ))}
+              </ul>
+              <FutureLink>{d.future}</FutureLink>
+            </div>
+          </div>
+        </>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .directions { padding-bottom: var(--space-5); }
+  .head { grid-template-columns: minmax(0, 1fr); }
+  .dirs { border-top: 1px solid var(--color-line); }
+  .dir-title { font: inherit; }
+  .dir-btn {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+    width: 100%; min-height: 64px; padding: var(--space-2) 0; background: none; border: 0; border-bottom: 1px solid var(--color-line);
+    text-align: left; cursor: pointer; color: var(--color-text);
+  }
+  .dir-name { font-family: var(--font-display); font-size: var(--text-m); line-height: 1.15; font-weight: 500; transition: color var(--dur-micro) var(--ease-out); }
+  .dir-btn :global(.dir-icon) { width: 22px; height: 22px; flex: none; transition: transform var(--dur-short) var(--ease-out); }
+  .dir-btn[aria-expanded="true"] :global(.dir-icon) { transform: rotate(45deg); }
+  .dir-btn:hover .dir-name { color: var(--color-accent); }
+  .dir-btn:active .dir-name { color: var(--color-accent-strong); }
+  .dir-btn:focus-visible { outline-offset: -3px; }
+
+  .dir-panel { display: grid; gap: var(--space-3); padding: var(--space-3) 0 var(--space-4); }
+  :global(.js) .dir-panel[hidden] { display: none; }
+  .dir-panel.is-entering { opacity: 0; transform: translateY(8px); }
+  .dir-panel { transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out); }
+  .dir-panel :global(.dir-photo) { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--radius); background: var(--color-dark); }
+  .dir-statement {
+    display: flex; align-items: flex-end; min-height: 12rem; padding: var(--space-3);
+    background: var(--color-header); color: var(--color-on-dark); border-radius: var(--radius);
+    font-family: var(--font-display); font-size: var(--text-l); line-height: var(--lh-tight); font-weight: 500;
+  }
+  .dir-body { display: grid; gap: var(--space-3); align-content: start; }
+  .dir-text { color: var(--color-text-muted); max-width: 46ch; }
+  .services { list-style: none; border-top: 1px solid var(--color-line); }
+  .services li { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-line); }
+  .svc { min-width: 0; }
+  .price { flex: none; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* Desktop with scripting: the list of directions on the left, one open panel on the right */
+  @media (min-width: 64rem) {
+    .head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: end; column-gap: var(--gap); }
+    :global(.js) .dirs { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: repeat(5, auto) 1fr; column-gap: var(--space-5); border-top: 0; }
+    :global(.js) .dir-title { grid-column: 1; }
+    :global(.js) .dir-title:first-child .dir-btn { border-top: 1px solid var(--color-line); }
+    :global(.js) .dir-btn { min-height: 72px; padding-left: var(--space-3); border-left: 3px solid transparent; transition: border-color var(--dur-micro) var(--ease-out); }
+    :global(.js) .dir-btn[aria-expanded="true"] { border-left-color: var(--color-accent); }
+    :global(.js) .dir-name { font-size: var(--text-l); }
+    :global(.js) .dir-btn :global(.dir-icon) { display: none; }
+    :global(.js) .dir-panel { grid-column: 2; grid-row: 1 / -1; padding: 0; grid-template-columns: minmax(0, 1fr); align-content: start; min-height: 34rem; }
+    :global(.js) .dir-panel :global(.dir-photo) { aspect-ratio: 2 / 1; }
+    :global(.js) .dir-panel--type .dir-statement { min-height: 19rem; font-size: var(--text-xl); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dir-panel.is-entering { opacity: 1; transform: none; }
+  }
+</style>

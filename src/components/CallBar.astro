@@ -1,0 +1,25 @@
+---
+// Phones only: a fixed call bar after the first screen (R-004). The footer reserves its height, so it never covers content.
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+---
+<div class="callbar on-dark" data-callbar data-rec="R-004">
+  <a class="btn-call" href={contacts.phoneMain.href}><Icon name="phone" /><span>Подзвонити</span></a>
+</div>
+
+<style>
+  .callbar { display: none; }
+  @media (max-width: 47.99rem) {
+    .callbar {
+      display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      padding: var(--space-1) var(--space) calc(var(--space-1) + env(safe-area-inset-bottom));
+      background: var(--color-header);
+      transition: transform var(--dur-short) var(--ease-out), opacity var(--dur-short) var(--ease-out);
+    }
+    .callbar :global(.btn-call) { width: 100%; }
+    .callbar.is-hidden { transform: translateY(100%); opacity: 0; pointer-events: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .callbar { transition: none; }
+  }
+</style>

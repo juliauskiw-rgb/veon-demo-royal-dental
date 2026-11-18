@@ -1,0 +1,76 @@
+---
+import { reviews, nb } from "../data/site";
+---
+<section id="reviews" class="section reviews" data-rec="R-010">
+  <div class="container grid">
+    <div class="intro">
+      <h2>Відгуки пацієнтів</h2>
+      <div class="tabs" role="tablist" aria-label="Місто пацієнта" data-tabs hidden>
+        {reviews.map((r, i) => (
+          <button type="button" role="tab" class="tab" id={`rev-tab-${i}`} aria-controls={`rev-${i}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? "0" : "-1"} data-tab>{r.city}</button>
+        ))}
+      </div>
+    </div>
+    <div class="panels">
+      {reviews.map((r, i) => (
+        <figure class="review" id={`rev-${i}`} role="tabpanel" aria-labelledby={`rev-tab-${i}`} data-tabpanel>
+          <blockquote lang={r.lang}>
+            <p class="lead">{nb(r.lead)}</p>
+            {r.rest && (
+              <details class="more">
+                <summary>Читати відгук повністю</summary>
+                {r.rest.map((p) => <p>{nb(p)}</p>)}
+              </details>
+            )}
+          </blockquote>
+          <figcaption><span class="city">{r.city}</span><span class="name">{r.name}</span></figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { padding-block: var(--space-section) var(--space-7); }
+  .grid { display: grid; gap: var(--space-4); }
+  .intro { display: grid; gap: var(--space-3); align-content: start; }
+  .hint { color: var(--color-text-muted); max-width: 40ch; }
+  .tabs { display: none; }
+  :global(.js) .tabs:not([hidden]) { display: flex; gap: var(--space-1); overflow-x: auto; padding-bottom: var(--space-1); scrollbar-width: none; }
+  .tab {
+    flex: none; min-height: 44px; padding: 0 var(--space-2); background: none; border: 1px solid var(--color-line); border-radius: var(--radius);
+    font-size: var(--text-xs); font-weight: 500; cursor: pointer; white-space: nowrap;
+    transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+  }
+  .tab:hover { border-color: var(--color-text); }
+  .tab:active { transform: translateY(1px); }
+  .tab[aria-selected="true"] { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+  .panels { display: grid; gap: var(--space-5); }
+  :global(.js) .panels.is-tabbed { gap: 0; }
+  :global(.js) .review[hidden] { display: none; }
+  .review { display: grid; gap: var(--space-3); transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out); }
+  .review.is-entering { opacity: 0; transform: translateY(8px); }
+  .lead { font-family: var(--font-display); font-size: var(--text-quote); line-height: 1.3; font-weight: 400; max-width: 34ch; }
+  .more { margin-top: var(--space-3); max-width: 62ch; }
+  .more summary { display: inline-flex; align-items: center; min-height: 44px; cursor: pointer; font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.3em; text-decoration-color: var(--color-line); list-style: none; }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary:hover { text-decoration-color: currentColor; }
+  .more[open] summary { margin-bottom: var(--space-2); }
+  .more p { color: var(--color-text-muted); }
+  .more p + p { margin-top: var(--space-2); }
+  figcaption { display: grid; gap: var(--space-0); padding-top: var(--space-3); border-top: 1px solid var(--color-line); max-width: 34rem; }
+  .city { font-family: var(--font-display); font-size: var(--text-m); font-weight: 500; }
+  .name { font-family: var(--font-display); font-style: italic; color: var(--color-text-muted); }
+  @media (min-width: 64rem) {
+    .grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: var(--space-5); }
+    :global(.js) .tabs:not([hidden]) { flex-direction: column; align-items: flex-start; overflow: visible; gap: 0; border-left: 1px solid var(--color-line); }
+    .tab { border: 0; border-left: 3px solid transparent; margin-left: -2px; padding: 0 var(--space-3); font-size: var(--text-s); }
+    .tab[aria-selected="true"] { background: none; color: var(--color-text); border-left-color: var(--color-accent); font-weight: 600; }
+    .tab:hover { color: var(--color-accent); }
+    :global(.js) .panels.is-tabbed { min-height: 22rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .review.is-entering { opacity: 1; transform: none; }
+    .tab:active { transform: none; }
+  }
+</style>

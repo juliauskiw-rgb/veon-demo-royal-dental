@@ -1,0 +1,185 @@
+{
+  "hero-models": [
+    {
+      "file": "hero-models-640.webp",
+      "width": 640,
+      "height": 256
+    },
+    {
+      "file": "hero-models-960.webp",
+      "width": 960,
+      "height": 384
+    },
+    {
+      "file": "hero-models-1440.webp",
+      "width": 1440,
+      "height": 576
+    },
+    {
+      "file": "hero-models-1920.webp",
+      "width": 1920,
+      "height": 768
+    }
+  ],
+  "hero-models-sq": [
+    {
+      "file": "hero-models-sq-420.webp",
+      "width": 420,
+      "height": 420
+    },
+    {
+      "file": "hero-models-sq-780.webp",
+      "width": 780,
+      "height": 780
+    }
+  ],
+  "method-model": [
+    {
+      "file": "method-model-560.webp",
+      "width": 560,
+      "height": 374
+    },
+    {
+      "file": "method-model-900.webp",
+      "width": 900,
+      "height": 601
+    },
+    {
+      "file": "method-model-1190.webp",
+      "width": 1190,
+      "height": 794
+    }
+  ],
+  "method-tryin": [
+    {
+      "file": "method-tryin-560.webp",
+      "width": 560,
+      "height": 299
+    },
+    {
+      "file": "method-tryin-900.webp",
+      "width": 900,
+      "height": 480
+    },
+    {
+      "file": "method-tryin-1200.webp",
+      "width": 1200,
+      "height": 640
+    }
+  ],
+  "dir-aesthetic": [
+    {
+      "file": "dir-aesthetic-560.webp",
+      "width": 560,
+      "height": 409
+    },
+    {
+      "file": "dir-aesthetic-1000.webp",
+      "width": 1000,
+      "height": 730
+    }
+  ],
+  "dir-ortho": [
+    {
+      "file": "dir-ortho-549.webp",
+      "width": 549,
+      "height": 328
+    }
+  ],
+  "dir-surgery": [
+    {
+      "file": "dir-surgery-560.webp",
+      "width": 560,
+      "height": 350
+    },
+    {
+      "file": "dir-surgery-920.webp",
+      "width": 920,
+      "height": 575
+    }
+  ],
+  "dir-treatment": [
+    {
+      "file": "dir-treatment-560.webp",
+      "width": 560,
+      "height": 350
+    },
+    {
+      "file": "dir-treatment-920.webp",
+      "width": 920,
+      "height": 575
+    }
+  ],
+  "work-bleach": [
+    {
+      "file": "work-bleach-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-bleach-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "work-veneers10": [
+    {
+      "file": "work-veneers10-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-veneers10-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "work-implant": [
+    {
+      "file": "work-implant-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-implant-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "work-occlusion": [
+    {
+      "file": "work-occlusion-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-occlusion-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "work-complex": [
+    {
+      "file": "work-complex-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-complex-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ],
+  "work-rehab": [
+    {
+      "file": "work-rehab-360.webp",
+      "width": 360,
+      "height": 480
+    },
+    {
+      "file": "work-rehab-720.webp",
+      "width": 720,
+      "height": 960
+    }
+  ]
+}

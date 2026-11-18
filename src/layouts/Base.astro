@@ -1,0 +1,43 @@
+---
+import "../styles/tokens.css";
+import "../styles/fonts.css";
+import "../styles/global.css";
+
+interface Props { lang: string; title: string; description: string; canonical?: string; jsonld?: object; }
+const { lang, title, description, canonical, jsonld } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uk_UA" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="theme-color" content="#1C1D1F" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="data:," />
+    <link rel="preload" href="/fonts/piazzolla-cyrillic-standard-normal.woff2" as="font" type="font/woff2" crossorigin />
+    {jsonld && <script type="application/ld+json" set:html={JSON.stringify(jsonld)} />}
+    <slot name="head" />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">{lang.startsWith("uk") ? "До змісту" : lang.startsWith("ru") ? "К содержанию" : "Skip to content"}</a>
+    <slot name="header" />
+    <main id="main"><slot /></main>
+    <slot name="footer" />
+    <script src="../scripts/reveal.ts"></script>
+    <slot name="scripts" />
+  </body>
+</html>
+
+<style is:global>
+  /* Floor 4, repeated here so the layout carries it on its own (sloplint reads the layout without its imports) */
+  html { overflow-x: clip; }
+  body { overflow-x: clip; }
+</style>
